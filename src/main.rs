@@ -1,5 +1,6 @@
 use crate::game::GameState;
-use raylib::prelude::*;
+use raylib::audio::RaylibAudio;
+use raylib::drawing::RaylibDraw;
 
 mod game;
 mod render;

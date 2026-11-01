@@ -40,10 +40,12 @@ pub fn update(config: &game::GameConfig, state: &mut game::GameState, rl: &Rayli
         return;
     }
 
+    // reset timer
     if state.reset_timer > 0 {
         state.reset_timer -= 1;
     }
 
+    // rally display timer
     if state.ball_speed_display_timer > 0 {
         state.ball_speed_display_timer -= 1;
     }

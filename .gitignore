@@ -1,1 +1,4 @@
 /target
+/web/index.html
+/web/pong.js
+/web/pong.wasm
