@@ -1,7 +1,10 @@
 use crate::WindowConfig;
-use crate::utils::get_random_value;
 
-use raylib::ffi::{Color, Rectangle};
+use raylib::ffi::{Color, GetRandomValue, Rectangle};
+
+pub fn get_random_value() -> i32 {
+    unsafe { 2 * GetRandomValue(0, 1) - 1 }
+}
 
 pub struct GameConfig {
     pub game_height: i32,
@@ -82,17 +85,8 @@ impl GameState {
             ball_speed_display_timer: 0,
         }
     }
-}
 
-pub trait Pong {
-    fn player_one_hitbox(&self, config: &GameConfig) -> Rectangle;
-    fn player_two_hitbox(&self, config: &GameConfig) -> Rectangle;
-    fn ball_hitbox(&self, config: &GameConfig, new_ball_pos: (i32, i32)) -> Rectangle;
-    fn score_and_reset(&mut self, config: &GameConfig, winner: i32);
-}
-
-impl Pong for GameState {
-    fn player_one_hitbox(&self, config: &GameConfig) -> Rectangle {
+    pub fn player_one_hitbox(&self, config: &GameConfig) -> Rectangle {
         Rectangle::new(
             self.player_one_pos.0 as f32,
             self.player_one_pos.1 as f32,
@@ -101,7 +95,7 @@ impl Pong for GameState {
         )
     }
 
-    fn player_two_hitbox(&self, config: &GameConfig) -> Rectangle {
+    pub fn player_two_hitbox(&self, config: &GameConfig) -> Rectangle {
         Rectangle::new(
             self.player_two_pos.0 as f32,
             self.player_two_pos.1 as f32,
@@ -110,7 +104,7 @@ impl Pong for GameState {
         )
     }
 
-    fn ball_hitbox(&self, config: &GameConfig, new_ball_pos: (i32, i32)) -> Rectangle {
+    pub fn ball_hitbox(&self, config: &GameConfig, new_ball_pos: (i32, i32)) -> Rectangle {
         Rectangle::new(
             new_ball_pos.0 as f32,
             new_ball_pos.1 as f32,
@@ -119,7 +113,7 @@ impl Pong for GameState {
         )
     }
 
-    fn score_and_reset(&mut self, config: &GameConfig, winner: i32) {
+    pub fn score_and_reset(&mut self, config: &GameConfig, winner: i32) {
         assert!(winner == 1 || winner == 2, "winner should be 1 or 2");
         let coin_flip = get_random_value();
 

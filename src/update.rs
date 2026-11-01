@@ -3,7 +3,7 @@ use raylib::{
     ffi::KeyboardKey::{KEY_DOWN, KEY_P, KEY_S, KEY_UP, KEY_W},
 };
 
-use crate::{game, game::Pong};
+use crate::game;
 
 fn ball_hit_paddle(
     state: &mut game::GameState,

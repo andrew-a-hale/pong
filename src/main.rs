@@ -1,10 +1,9 @@
 use crate::game::GameState;
-use raylib::{audio::RaylibAudio, drawing::RaylibDraw};
+use raylib::prelude::*;
 
 mod game;
 mod render;
 mod update;
-mod utils;
 
 struct WindowConfig {
     height: i32,
